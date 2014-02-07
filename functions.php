@@ -9,7 +9,7 @@
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
+	$content_width = 848; /* pixels */
 }
 
 if ( ! function_exists( 'portfolio_perspectives_setup' ) ) :
@@ -46,13 +46,13 @@ function portfolio_perspectives_setup() {
 	) );
 
 	// Enable support for Post Formats.
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
+//	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 
 	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'portfolio_perspectives_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+//	add_theme_support( 'custom-background', apply_filters( 'portfolio_perspectives_custom_background_args', array(
+//		'default-color' => 'ffffff',
+//		'default-image' => '',
+//	) ) );
 }
 endif; // portfolio_perspectives_setup
 add_action( 'after_setup_theme', 'portfolio_perspectives_setup' );
@@ -66,8 +66,8 @@ function portfolio_perspectives_widgets_init() {
 		'id'            => 'sidebar-1',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
 	) );
 }
 add_action( 'widgets_init', 'portfolio_perspectives_widgets_init' );
@@ -76,7 +76,9 @@ add_action( 'widgets_init', 'portfolio_perspectives_widgets_init' );
  * Enqueue scripts and styles.
  */
 function portfolio_perspectives_scripts() {
-	wp_enqueue_style( 'portfolio-perspectives-style', get_stylesheet_uri() );
+    if ( is_admin() ) wp_enqueue_style( 'portfolio-perspectives', get_stylesheet_uri() );
+
+    if ( !is_admin() ) wp_enqueue_style( 'portfolio-perspectives-style', get_stylesheet_directory_uri() . '/css/style.css' );
 
 	wp_enqueue_script( 'portfolio-perspectives-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
