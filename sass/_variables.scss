@@ -31,12 +31,12 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 // ## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-//$body-bg:                $gray-light;
+$body-bg:                #DDED94;
 //** Global text color on `<body>`.
 //$text-color:            $gray-dark !default;
 
 //** Global textual link color.
-//$link-color:            $brand-primary !default;
+$link-color:            #506E1F;
 //** Link hover color set via `darken()` function.
 //$link-hover-color:      darken($link-color, 15%) !default;
 
@@ -78,7 +78,7 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 //
 //## Specify custom locations of the include Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
-//$icon-font-path: "../vendor/bootstrap-sass/fonts/bootstrap/";
+$icon-font-path: "../vendor/bootstrap-sass/fonts/bootstrap/";
 //$icon-font-name:          "glyphicons-halflings-regular" !default;
 //$icon-font-svg-id:				"glyphicons_halflingsregular" !default;
 
@@ -101,9 +101,9 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 //$line-height-large:         1.33 !default;
 //$line-height-small:         1.5 !default;
 
-//$border-radius-base:        0px;
-//$border-radius-small:       0px;
-//$border-radius-large:       3px;
+$border-radius-base:        0px;
+$border-radius-small:       0px;
+$border-radius-large:       3px;
 
 //** Global color for active items (e.g., navs or dropdowns).
 //$component-active-color:    #fff !default;
@@ -374,8 +374,8 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 //##
 
 //=== Shared nav styles
-//$nav-link-padding:                          10px 15px !default;
-//$nav-link-hover-bg:                         $gray-lighter !default;
+$nav-link-padding:                          5px 15px;
+$nav-link-hover-bg:                         rgba(255,255,255,0.3);
 
 //$nav-disabled-link-color:                   $gray-light !default;
 //$nav-disabled-link-hover-color:             $gray-light !default;
@@ -396,8 +396,8 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 
 //== Pills
 //$nav-pills-border-radius:                   $border-radius-base !default;
-//$nav-pills-active-link-hover-bg:            $component-active-bg !default;
-//$nav-pills-active-link-hover-color:         $component-active-color !default;
+$nav-pills-active-link-hover-bg:            rgba(255,255,255,0.8);
+$nav-pills-active-link-hover-color:         #506E1F;
 
 
 //== Pagination
