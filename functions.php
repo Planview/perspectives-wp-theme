@@ -93,6 +93,18 @@ function portfolio_perspectives_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'portfolio_perspectives_scripts' );
 
+function portfolio_perspectives_bg_size () {
+    if () { ?>
+<!--[if lte IE 8]>
+<style>
+    .site-header, .site-title, .site-description { -ms-behavior: url('<?php echo get_template_directory_uri() . '/vendor/background-size-polyfill/backgroundsize.min.htc' ?>');}
+</style>
+<script type="text/javascript" src="<?php echo get_template_directory_uri() . '/vendor/respond/dest/respond.min.js' ?>"></script>
+<![endif]-->
+<?php }
+}
+add_action( 'wp_head', 'portfolio_perspectives_bg_size', 100 );
+
 /**
  * Implement the Custom Header feature.
  */
