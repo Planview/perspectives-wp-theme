@@ -84,26 +84,26 @@ function portfolio_perspectives_comment( $comment, $args, $depth ) {
 	<?php else : ?>
 
 	<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
+        <div class="comment-avatar"><?php echo get_avatar($comment, 48); ?></div>
 		<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
-			<footer class="comment-meta">
-				<div class="comment-author vcard">
-					<?php if ( 0 != $args['avatar_size'] ) { echo get_avatar( $comment, $args['avatar_size'] ); } ?>
-					<?php printf( __( '%s <span class="says">says:</span>', 'portfolio-perspectives' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-				</div><!-- .comment-author -->
+			<header class="comment-meta"><h4>
+				<span class="comment-author vcard">
+					<?php printf( '<cite class="fn">%s</cite>', get_comment_author_link() ); ?>
+				</span><!-- .comment-author -->
 
-				<div class="comment-metadata">
+				<small class="comment-metadata"><span class="separator"> / </span>
 					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
 						<time datetime="<?php comment_time( 'c' ); ?>">
 							<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'portfolio-perspectives' ), get_comment_date(), get_comment_time() ); ?>
 						</time>
 					</a>
 					<?php edit_comment_link( __( 'Edit', 'portfolio-perspectives' ), '<span class="edit-link">', '</span>' ); ?>
-				</div><!-- .comment-metadata -->
+				</small><!-- .comment-metadata -->
+            </h4></header><!-- .comment-meta -->
 
-				<?php if ( '0' == $comment->comment_approved ) : ?>
-				<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'portfolio-perspectives' ); ?></p>
-				<?php endif; ?>
-			</footer><!-- .comment-meta -->
+            <?php if ( '0' == $comment->comment_approved ) : ?>
+                <p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'portfolio-perspectives' ); ?></p>
+            <?php endif; ?>
 
 			<div class="comment-content">
 				<?php comment_text(); ?>
@@ -118,12 +118,20 @@ function portfolio_perspectives_comment( $comment, $args, $depth ) {
 					'after'     => '</div>',
 				) ) );
 			?>
-		</article><!-- .comment-body -->
 
 	<?php
 	endif;
 }
 endif; // ends check for portfolio_perspectives_comment()
+
+if ( ! function_exists( 'portfolio_perspectives_end_comment') ) :
+
+    function portfolio_perspectives_end_comment () {
+        ?>
+        </article></li>
+    <?php
+    }
+endif;
 
 if ( ! function_exists( 'portfolio_perspectives_posted_on' ) ) :
 /**
@@ -131,18 +139,13 @@ if ( ! function_exists( 'portfolio_perspectives_posted_on' ) ) :
  */
 function portfolio_perspectives_posted_on() {
 	$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-		$time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
-	}
 
 	$time_string = sprintf( $time_string,
 		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
+		esc_html( get_the_date() )
 	);
 
-	printf( __( '<span class="posted-on">Posted on %1$s</span><span class="byline"> by %2$s</span>', 'portfolio-perspectives' ),
+	printf( __( '<p class="meta-text"><span class="byline">By %2$s</span><span class="separator"> / </span><span class="posted-on">%1$s</span></p>', 'portfolio-perspectives' ),
 		sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>',
 			esc_url( get_permalink() ),
 			$time_string
@@ -153,6 +156,20 @@ function portfolio_perspectives_posted_on() {
 		)
 	);
 }
+endif;
+
+if ( ! function_exists( 'portfolio_perspectives_author_thumb' ) ) :
+    /**
+     * Prints HTML of author avatar with link to archive.
+     */
+    function portfolio_perspectives_author_thumb( $class ) {
+        printf(
+            '<a href="%1$s" class="author-thumb%2$s">%3$s</a>',
+            esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+            ( !empty($class) ? esc_attr( ' ' . $class ) : '' ),
+            get_avatar( get_the_author_meta( 'ID' ), 24, null, get_the_author_meta( 'display_name' ) )
+        );
+    }
 endif;
 
 /**

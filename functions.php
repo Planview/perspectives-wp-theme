@@ -42,7 +42,8 @@ function portfolio_perspectives_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'portfolio-perspectives' ),
+        'primary' => __( 'Primary Menu', 'portfolio-perspectives' ),
+        'footer' => __( 'Footer Menu', 'portfolio-perspectives' ),
 	) );
 
 	// Enable support for Post Formats.

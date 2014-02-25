@@ -20,7 +20,7 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 //$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 
 //$brand-primary:         #428bca !default;
-//$brand-success:         #5cb85c !default;
+$brand-success:         #85AE3B;
 //$brand-info:            #5bc0de !default;
 //$brand-warning:         #f0ad4e !default;
 //$brand-danger:          #d9534f !default;
@@ -31,7 +31,7 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 // ## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:                #DDED94;
+//$body-bg:                #DDED94;
 //** Global text color on `<body>`.
 //$text-color:            $gray-dark !default;
 
@@ -45,7 +45,7 @@ $link-color:            #506E1F;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-//$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "PT Sans", Helvetica, Arial, sans-serif !default;
 //$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 //$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -69,7 +69,7 @@ $link-color:            #506E1F;
 
 //** By default, this inherits from the `<body>`.
 //$headings-font-family:    'Roboto Condensed', sans-serif;
-//$headings-font-weight:    500 !default;
+$headings-font-weight:    700;
 //$headings-line-height:    1.1 !default;
 //$headings-color:          $gray;
 
@@ -703,8 +703,8 @@ $nav-pills-active-link-hover-color:         #506E1F;
 //
 //##
 
-//$well-bg:                     #f5f5f5 !default;
-//$well-border:                 darken($well-bg, 7%) !default;
+$well-bg:                     lighten($brand-success, 50%);
+$well-border:                 lighten($brand-success, 40%);
 
 
 //== Badges
@@ -795,9 +795,9 @@ $nav-pills-active-link-hover-color:         #506E1F;
 //** Headings small color
 //$headings-small-color:        $gray-light !default;
 //** Blockquote small color
-//$blockquote-small-color:      $gray-light !default;
+$blockquote-small-color:      lighten($brand-success, 40%);
 //** Blockquote border color
-//$blockquote-border-color:     $gray-lighter !default;
+$blockquote-border-color:     lighten($brand-success, 40%);
 //** Page header border color
 //$page-header-border-color:    $gray-lighter !default;
 

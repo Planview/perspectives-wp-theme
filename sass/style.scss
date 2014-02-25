@@ -1,4 +1,4 @@
-
+@import url(http://fonts.googleapis.com/css?family=Brawler|PT+Sans:400,700,400italic,700italic&subset=latin-ext,latin);
 @import "variables";
 @import "../vendor/bootstrap-sass/stylesheets/bootstrap";
 
@@ -7,6 +7,13 @@
 }
 
 // Site Header
+body {
+  background-image: url('../img/bg-portfolio-perspectives-1280x449.png');
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .site-header-inner {
   margin-bottom: 5px;
 }
@@ -14,6 +21,19 @@
   @extend .container;
 }
 .site-branding {
+  @extend .text-hide, .col-sm-6;
+  h1 {
+    padding-top: 17%;
+    @extend .text-hide;
+    background-image: url('../img/title-portfolio-perspectives-496x83.png');
+    background-size: contain;
+    background-position: top left;
+    background-repeat: no-repeat;
+  }
+  h2 {
+    height: 0;
+    margin: 0;
+  }
 }
 .main-navigation {
   @extend .row;
@@ -21,7 +41,10 @@
     @extend .col-sm-8, .col-md-9;
     > ul {
       @extend .nav, .nav-pills;
-      > li > a { border: 2px solid rgba(255, 255, 255, 0.6); }
+      > li {
+        + li {margin-left: 15px;}
+        > a { border: 1px solid rgba(255, 255, 255, 0.6); text-transform: uppercase; font-weight: 700; }
+      }
     }
   }
   #header-search {
@@ -51,10 +74,11 @@
 // Site Body
 .site-content-wrapper {
   @extend .container;
-  background-color: rgba(white, 0.8);
+  background-color: rgba(255,255,255,0.8);
 }
 .site-content {
   @extend .row;
+  padding-bottom: 40px;
 }
 .content-area {
   @extend .col-md-9, .col-md-push-3;
@@ -107,12 +131,19 @@
     .ad { @extend .col-xs-6, .col-md-12; }
     img { @include img-responsive(); margin-top: 10px; @include center-block(); }
   }
+  .widget_archive ul {
+    @extend .list-unstyled;
+  }
 }
 
 
 //  Site Footer
 .site-footer {
   padding: 20px 0 0 0;
+  background-color: $brand-success;
+  color: white;
+  font-weight: 700;
+  a { color: white; }
 }
 .footer-inner {
   @extend .container;
@@ -128,11 +159,18 @@
 }
 .planview-brand {
   text-align: right;
-  padding-top: 4%;
   @extend .col-sm-6;
+}
+.copyright {
+  padding-top: 50px;
+  background-image: url('../img/logo-planview-white.png');
+  background-position: top right;
+  background-repeat: no-repeat;
 }
 
 //  Posts
+.site-main {padding: 0 20px;}
+.blog .post { padding-bottom: 20px; border-bottom: 1px solid #ddd; margin-bottom: 20px; &:last-of-type { border-bottom: none; }}
 .entry-header {
   @extend .page-header;
   .entry-meta {
@@ -142,6 +180,8 @@
     }
     p.meta-text {
       @extend .media-body;
+      font-weight: bold;
+      text-transform: uppercase;
     }
     .updated {
       @extend .hidden;
@@ -155,7 +195,46 @@
     @extend .label, .label-primary;
   }
 }
+.entry-title, .page-title, .comments-title, .comment-reply-title {
+  font-family: 'Brawler', Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+footer.entry-meta {
+  @extend .well, .well-sm;
+  .cat-links, .tags-links, .edit-link {display: block; margin-bottom: 10px; &:last-child {margin-bottom: 0;}}
+  .edit-link a {@extend .label, .label-warning;}
+  .cat-links a {@extend .label, .label-success;}
+  .tags-links a {@extend .label, .label-success;}
 
+}
+
+// Comments
+.comments-area {
+  .comment-meta {@extend .media-heading;}
+  .comment-avatar {@extend .pull-left;}
+  .comment-body {@extend .media-body;}
+  ul {@extend .media-list;}
+  li {@extend .media;}
+  .comment-edit-link {@extend .label, .label-danger; margin-left: 5px;}
+  .reply {margin-bottom: 10px;}
+  .comment-reply-link {@extend .label, .label-warning; margin-left: 5px;}
+}
+#commentform {
+  //  @extend .form-horizontal;
+}
+.comment-form-comment, .comment-form-author, .comment-form-email, .comment-form-url {
+  @extend .form-group;
+  //  label {@extend .col-sm-2;}
+  //  .input-wrapper { @extend .col-sm-10; }
+  input, textarea { @extend .form-control; }
+  .required { @extend .text-danger; }
+}
+#commentsubmit {
+  @extend .btn, .btn-lg, .btn-success; //.col-sm-offset-2;
+}
+.comment-awaiting-moderation{
+  @extend .alert, .alert-info;
+}
 
 //  Paging
 .paging-navigation, .post-navigation {

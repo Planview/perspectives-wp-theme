@@ -11,7 +11,7 @@ $GLOBALS['portfolio_perspectives_search_id'] = isset($GLOBALS['portfolio_perspec
 		<span class="screen-reader-text"><?php _ex( 'Search for:', 'label', 'portfolio-perspectives' ); ?></span>
     </label>
     <div class="search-controls">
-        <input type="search" id="search_<?php echo $GLOBALS['portfolio_perspectives_search_id'] ?>" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'portfolio-perspectives' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
+        <input type="search" id="search_<?php echo $GLOBALS['portfolio_perspectives_search_id'] ?>" class="search-field" placeholder="<?php echo esc_attr_x( 'SEARCH', 'placeholder', 'portfolio-perspectives' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s">
         <div class="submit"><button type="submit" class="search-submit"><span class="glyphicon glyphicon-search"></span></button></div>
 
     </div>
