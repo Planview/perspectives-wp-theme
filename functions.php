@@ -85,7 +85,13 @@ function portfolio_perspectives_scripts() {
 
     wp_enqueue_script( 'portfolio-perspectives-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
+    wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/vendor/js/modernizr.min.js', array(), '', false );
+
+    wp_register_script( 'webshim', get_template_directory_uri() . '/vendor/webshim/js-webshim/minified/polyfiller.js', array('jquery', 'modernizr'), '', true);
+
     wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/min/bootstrap.min.js', array('jquery'), '3.1', true );
+
+    wp_enqueue_script( 'portfolio-perspectives', get_template_directory_uri() . '/js/min/portfolio-perspectives.min.js', array('jquery', 'webshim'), '', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -96,7 +102,7 @@ add_action( 'wp_enqueue_scripts', 'portfolio_perspectives_scripts' );
 function portfolio_perspectives_bg_size () { ?>
 <!--[if lte IE 8]>
 <style>
-    .site-header, .site-title, .site-description { -ms-behavior: url('<?php echo get_template_directory_uri() . '/vendor/background-size-polyfill/backgroundsize.min.htc' ?>');}
+    body, .site-branding h1, .bg-size { -ms-behavior: url('<?php echo get_template_directory_uri() . '/vendor/background-size-polyfill/backgroundsize.min.htc' ?>');}
 </style>
 <script type="text/javascript" src="<?php echo get_template_directory_uri() . '/vendor/respond/dest/respond.min.js' ?>"></script>
 <![endif]-->
