@@ -6925,10 +6925,21 @@ body {
   margin: 0;
 }
 
+.lt-ie9 .nav > li > a:hover, .lt-ie9 .main-navigation .menu-container > ul > li > a:hover, .main-navigation .lt-ie9 .menu-container > ul > li > a:hover, .lt-ie9 .nav > li > a:focus, .lt-ie9 .main-navigation .menu-container > ul > li > a:focus, .main-navigation .lt-ie9 .menu-container > ul > li > a:focus {
+  background-color: #FFFFFF;
+}
+.lt-ie9 .nav .open > a, .lt-ie9 .main-navigation .menu-container > ul .open > a, .main-navigation .lt-ie9 .menu-container > ul .open > a, .lt-ie9 .nav .open > a:hover, .lt-ie9 .main-navigation .menu-container > ul .open > a:hover, .main-navigation .lt-ie9 .menu-container > ul .open > a:hover, .lt-ie9 .nav .open > a:focus, .lt-ie9 .main-navigation .menu-container > ul .open > a:focus, .main-navigation .lt-ie9 .menu-container > ul .open > a:focus {
+  background-color: #FFFFFF;
+}
+.lt-ie9 .nav-pills > li.active > a, .lt-ie9 .main-navigation .menu-container > ul > li.active > a, .main-navigation .lt-ie9 .menu-container > ul > li.active > a, .lt-ie9 .nav-pills > li.active > a:hover, .lt-ie9 .main-navigation .menu-container > ul > li.active > a:hover, .main-navigation .lt-ie9 .menu-container > ul > li.active > a:hover, .lt-ie9 .nav-pills > li.active > a:focus, .lt-ie9 .main-navigation .menu-container > ul > li.active > a:focus, .main-navigation .lt-ie9 .menu-container > ul > li.active > a:focus {
+  background-color: #FFFFFF;
+}
+
 .main-navigation .menu-container > ul > li + li {
   margin-left: 15px;
 }
 .main-navigation .menu-container > ul > li > a {
+  border: 1px solid #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   font-weight: 700;

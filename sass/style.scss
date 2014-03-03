@@ -35,6 +35,40 @@ body {
     margin: 0;
   }
 }
+
+.lt-ie9 {
+  .nav {
+    > li {
+      > a {
+        &:hover,
+        &:focus {
+          background-color: #FFFFFF;
+        }
+      }
+    }
+
+    // Open dropdowns
+    .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: #FFFFFF;
+      }
+    }
+  }
+  .nav-pills {
+    > li {
+      // Active state
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: #FFFFFF;
+        }
+      }
+    }
+  }
+}
 .main-navigation {
   @extend .row;
   .menu-container {
@@ -43,7 +77,12 @@ body {
       @extend .nav, .nav-pills;
       > li {
         + li {margin-left: 15px;}
-        > a { border: 1px solid rgba(255, 255, 255, 0.6); text-transform: uppercase; font-weight: 700; }
+        > a {
+          border: 1px solid #FFFFFF;
+          border: 1px solid rgba(255, 255, 255, 0.6);
+          text-transform: uppercase;
+          font-weight: 700;
+        }
       }
     }
   }
