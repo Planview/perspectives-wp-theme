@@ -33,6 +33,7 @@ body {
   h2 {
     height: 0;
     margin: 0;
+    .lt-ie9 & { display: none; }
   }
 }
 

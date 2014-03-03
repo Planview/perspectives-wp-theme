@@ -6924,6 +6924,9 @@ body {
   height: 0;
   margin: 0;
 }
+.lt-ie9 .site-branding h2 {
+  display: none;
+}
 
 .lt-ie9 .nav > li > a:hover, .lt-ie9 .main-navigation .menu-container > ul > li > a:hover, .main-navigation .lt-ie9 .menu-container > ul > li > a:hover, .lt-ie9 .nav > li > a:focus, .lt-ie9 .main-navigation .menu-container > ul > li > a:focus, .main-navigation .lt-ie9 .menu-container > ul > li > a:focus {
   background-color: #FFFFFF;
