@@ -9,14 +9,19 @@
 ?>
 
 	</div><!-- #content -->
+    </div>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<?php do_action( 'portfolio_perspectives_credits' ); ?>
-			<a href="http://wordpress.org/" rel="generator"><?php printf( __( 'Proudly powered by %s', 'portfolio-perspectives' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'portfolio-perspectives' ), 'Portfolio Perspectives', '<a href="http://www.planview.com" rel="designer">Planview WCS</a>' ); ?>
-		</div><!-- .site-info -->
+        <div class="footer-inner">
+            <div class="site-info">
+                <nav class="blog-links">
+                    <?php wp_nav_menu( array( 'theme_location' => 'footer' ) ); ?>
+                </nav>
+                <div class="planview-brand">
+                    <p class="copyright"><?php printf(__('Copyright &copy; %s Planview, Inc., All rights reserved', 'portfolio-perspectives'), date('Y')); ?></p>
+                </div>
+            </div><!-- .site-info -->
+        </div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

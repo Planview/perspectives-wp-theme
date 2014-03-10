@@ -28,6 +28,8 @@ get_header(); ?>
 							 * what author we're dealing with (if that is the case).
 							*/
 							the_post();
+                            $perspectives_archive_author = get_the_author_meta('ID');
+
 							printf( __( 'Author: %s', 'portfolio-perspectives' ), '<span class="vcard">' . get_the_author() . '</span>' );
 							/* Since we called the_post() above, we need to
 							 * rewind the loop back to the beginning that way
@@ -85,6 +87,18 @@ get_header(); ?>
 					endif;
 				?>
 			</header><!-- .page-header -->
+
+            <?php if (is_author() && (get_query_var('page') < 2 && get_query_var('paged') < 2)) : ?>
+                <div class="well">
+                    <div class="pull-left" style="padding: 0 20px 20px 0">
+                        <?php echo get_avatar($perspectives_archive_author, 150, '', get_the_author_meta('display_name')) ?>
+                    </div>
+                    <?php the_field('user_bio', "user_{$perspectives_archive_author}"); ?>
+                    <?php if ($user_twitter = get_field('user_twitter', "user_{$perspectives_archive_author}")) : ?>
+                        <p class="twitter"><a href="http://twitter.com/<?php echo $user_twitter; ?>">@<?php echo $user_twitter ?></a></p>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>

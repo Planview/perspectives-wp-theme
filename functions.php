@@ -9,7 +9,7 @@
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
+	$content_width = 848; /* pixels */
 }
 
 if ( ! function_exists( 'portfolio_perspectives_setup' ) ) :
@@ -42,17 +42,18 @@ function portfolio_perspectives_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'portfolio-perspectives' ),
+        'primary' => __( 'Primary Menu', 'portfolio-perspectives' ),
+        'footer' => __( 'Footer Menu', 'portfolio-perspectives' ),
 	) );
 
 	// Enable support for Post Formats.
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
+//	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 
 	// Setup the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'portfolio_perspectives_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+//	add_theme_support( 'custom-background', apply_filters( 'portfolio_perspectives_custom_background_args', array(
+//		'default-color' => 'ffffff',
+//		'default-image' => '',
+//	) ) );
 }
 endif; // portfolio_perspectives_setup
 add_action( 'after_setup_theme', 'portfolio_perspectives_setup' );
@@ -66,8 +67,8 @@ function portfolio_perspectives_widgets_init() {
 		'id'            => 'sidebar-1',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
 	) );
 }
 add_action( 'widgets_init', 'portfolio_perspectives_widgets_init' );
@@ -76,17 +77,37 @@ add_action( 'widgets_init', 'portfolio_perspectives_widgets_init' );
  * Enqueue scripts and styles.
  */
 function portfolio_perspectives_scripts() {
-	wp_enqueue_style( 'portfolio-perspectives-style', get_stylesheet_uri() );
+    if ( is_admin() ) wp_enqueue_style( 'portfolio-perspectives', get_stylesheet_uri() );
+
+    if ( !is_admin() ) wp_enqueue_style( 'portfolio-perspectives-style', get_stylesheet_directory_uri() . '/css/style.css' );
 
 	wp_enqueue_script( 'portfolio-perspectives-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
-	wp_enqueue_script( 'portfolio-perspectives-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+    wp_enqueue_script( 'portfolio-perspectives-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+
+    wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/vendor/js/modernizr.min.js', array(), '', false );
+
+    wp_register_script( 'webshim', get_template_directory_uri() . '/vendor/webshim/js-webshim/minified/polyfiller.js', array('jquery', 'modernizr'), '', true);
+
+    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/min/bootstrap.min.js', array('jquery'), '3.1', true );
+
+    wp_enqueue_script( 'portfolio-perspectives', get_template_directory_uri() . '/js/min/portfolio-perspectives.min.js', array('jquery', 'webshim'), '', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'portfolio_perspectives_scripts' );
+
+function portfolio_perspectives_bg_size () { ?>
+<!--[if lte IE 8]>
+<style>
+    body, .site-branding h1, .bg-size { -ms-behavior: url('<?php echo get_template_directory_uri() . '/vendor/background-size-polyfill/backgroundsize.min.htc' ?>');}
+</style>
+<script type="text/javascript" src="<?php echo get_template_directory_uri() . '/vendor/respond/dest/respond.min.js' ?>"></script>
+<![endif]-->
+<?php }
+add_action( 'wp_head', 'portfolio_perspectives_bg_size', 100 );
 
 /**
  * Implement the Custom Header feature.
@@ -112,3 +133,8 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Load nav walkers file.
+ */
+require get_template_directory() . '/inc/nav-walkers.php';

@@ -27,8 +27,7 @@ if ( post_password_required() ) {
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
-				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'portfolio-perspectives' ),
-					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
+				_e('Comments', 'portfolio-perspectives');
 			?>
 		</h2>
 
@@ -40,7 +39,7 @@ if ( post_password_required() ) {
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // check for comment navigation ?>
 
-		<ol class="comment-list">
+		<ul class="comment-list">
 			<?php
 				/* Loop through and list the comments. Tell wp_list_comments()
 				 * to use portfolio_perspectives_comment() to format the comments.
@@ -48,9 +47,9 @@ if ( post_password_required() ) {
 				 * define portfolio_perspectives_comment() and that will be used instead.
 				 * See portfolio_perspectives_comment() in inc/template-tags.php for more.
 				 */
-				wp_list_comments( array( 'callback' => 'portfolio_perspectives_comment' ) );
+				wp_list_comments( array( 'callback' => 'portfolio_perspectives_comment', 'end-callback' => 'portfolio_perspectives_end_comment' ) );
 			?>
-		</ol><!-- .comment-list -->
+		</ul><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
@@ -69,6 +68,42 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'portfolio-perspectives' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(); ?>
+	<?php comment_form(array(
+        'id_submit'         => 'commentsubmit',
+        'title_reply'       => __( 'Post a Comment', 'portfolio-perspectives' ),
+        'title_reply_to'    => __( 'Post a Comment to %s', 'portfolio-perspectives' ),
+        'cancel_reply_link' => __( 'Cancel Comment', 'portfolio-perspectives' ),
+        'label_submit'      => __( 'Submit Comment', 'portfolio-perspectives' ),
+
+        'comment_field' =>  '<div class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun', 'portfolio-perspectives' ) .
+            '</label><div class="input-wrapper"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
+            '</textarea></div></div>',
+
+        'comment_notes_before' => '<p class="comment-notes">' .
+            __( 'Your email address will not be published.', 'portfolio-perspectives' ) . ( $req ? $required_text : '' ) .
+            '</p>',
+
+        'comment_notes_after' => '',
+
+        'fields' => apply_filters( 'comment_form_default_fields', array(
+
+                'author' =>
+                    '<div class="comment-form-author">' .
+                    '<label for="author">' . __( 'Name', 'portfolio-perspectives' ) .
+                    ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' .
+                    '<div class="input-wrapper"><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+                    '" size="30"' . $aria_req . ' /></div></div>',
+
+                'email' =>
+                    '<div class="comment-form-email"><label for="email">' . __( 'Email', 'portfolio-perspectives' ) .
+                    ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' .
+                    '<div class="input-wrapper"><input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+                    '" size="30"' . $aria_req . ' /></div></div>',
+
+                'url' =>
+                    ''
+            )
+        ),
+    )); ?>
 
 </div><!-- #comments -->

@@ -8,8 +8,12 @@
 	<header class="entry-header">
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 
+        <div class="entry-actions">
+            <a class="addthis_button_compact label label-warning" addthis:url="<?php the_permalink(); ?>" addthis:title="<?php echo esc_attr(get_the_title()); ?>"><span class=""><span class="glyphicon glyphicon-plus"></span> <?php _e('Share', 'portfolio-perspectives'); ?></span></a>
+        </div>
 		<div class="entry-meta">
-			<?php portfolio_perspectives_posted_on(); ?>
+            <?php portfolio_perspectives_author_thumb('pull-left'); ?>
+            <?php portfolio_perspectives_posted_on(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
@@ -23,40 +27,32 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-meta">
-		<?php
-			/* translators: used between list items, there is a space after the comma */
-			$category_list = get_the_category_list( __( ', ', 'portfolio-perspectives' ) );
+    <?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
+        <?php
+        $categories_list = get_the_category_list( __( ' ', 'portfolio-perspectives' ) );
+        $tags_list = get_the_tag_list( '', __( ' ', 'portfolio-perspectives' ) );
 
-			/* translators: used between list items, there is a space after the comma */
-			$tag_list = get_the_tag_list( '', __( ', ', 'portfolio-perspectives' ) );
+        if (($categories_list && portfolio_perspectives_categorized_blog()) || $tags_list || (is_user_logged_in() && current_user_can('edit_posts'))) :
+            ?>
+            <footer class="entry-meta">
+                <?php
+                if ( $categories_list && portfolio_perspectives_categorized_blog() ) :
+                    ?>
+                    <span class="cat-links">
+				<?php printf( __( 'Posted in %1$s', 'portfolio-perspectives' ), $categories_list ); ?>
+			</span>
+                <?php endif; // End if categories ?>
 
-			if ( ! portfolio_perspectives_categorized_blog() ) {
-				// This blog only has 1 category so we just need to worry about tags in the meta text
-				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'portfolio-perspectives' );
-				} else {
-					$meta_text = __( 'Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'portfolio-perspectives' );
-				}
+                <?php
+                if ( $tags_list ) :
+                    ?>
+                    <span class="tags-links">
+				<?php printf( __( 'Tagged %1$s', 'portfolio-perspectives' ), $tags_list ); ?>
+			</span>
+                <?php endif; // End if $tags_list ?>
 
-			} else {
-				// But this blog has loads of categories so we should probably display them here
-				if ( '' != $tag_list ) {
-					$meta_text = __( 'This entry was posted in %1$s and tagged %2$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'portfolio-perspectives' );
-				} else {
-					$meta_text = __( 'This entry was posted in %1$s. Bookmark the <a href="%3$s" rel="bookmark">permalink</a>.', 'portfolio-perspectives' );
-				}
-
-			} // end check for categories on this blog
-
-			printf(
-				$meta_text,
-				$category_list,
-				$tag_list,
-				get_permalink()
-			);
-		?>
-
-		<?php edit_post_link( __( 'Edit', 'portfolio-perspectives' ), '<span class="edit-link">', '</span>' ); ?>
-	</footer><!-- .entry-meta -->
+                <?php edit_post_link( __( 'Edit', 'portfolio-perspectives' ), '<span class="edit-link">', '</span>' ); ?>
+            </footer><!-- .entry-meta -->
+        <?php endif; ?>
+    <?php endif; // End if 'post' == get_post_type() ?>
 </article><!-- #post-## -->
