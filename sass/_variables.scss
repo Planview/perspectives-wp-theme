@@ -689,7 +689,7 @@ $nav-pills-active-link-hover-color:         #506E1F;
 //** Thumbnail background color
 //$thumbnail-bg:                $body-bg !default;
 //** Thumbnail border color
-//$thumbnail-border:            #ddd !default;
+$thumbnail-border:            lighten($brand-success, 40%);
 //** Thumbnail border radius
 //$thumbnail-border-radius:     $border-radius-base !default;
 

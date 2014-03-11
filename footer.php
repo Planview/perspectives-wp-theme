@@ -15,7 +15,7 @@
         <div class="footer-inner">
             <div class="site-info">
                 <nav class="blog-links">
-                    <?php wp_nav_menu(array('location' => 'footer')); ?>
+                    <?php wp_nav_menu( array( 'theme_location' => 'footer' ) ); ?>
                 </nav>
                 <div class="planview-brand">
                     <p class="copyright"><?php printf(__('Copyright &copy; %s Planview, Inc., All rights reserved', 'portfolio-perspectives'), date('Y')); ?></p>
