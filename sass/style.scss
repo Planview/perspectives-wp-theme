@@ -239,6 +239,16 @@ body {
 .entry-title, .page-title, .comments-title, .comment-reply-title {
   font-family: 'Brawler', Georgia, "Times New Roman", serif;
   font-weight: 400;
+  .subtitle {
+    @extend .small;
+    display: block;
+    color: desaturate($link-color, 20%);
+    font: {
+      size: 65%;
+      style: italic;
+      weight: 400;
+    }
+  }
 }
 footer.entry-meta {
   @extend .well, .well-sm;
