@@ -7267,6 +7267,19 @@ body {
 .entry-header .entry-meta p.meta-text {
   font-weight: bold;
   text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+@media screen and (min-width: 768px) {
+  .entry-header .entry-meta p.meta-text {
+    margin-top: 24px;
+  }
+}
+
+.entry-actions {
+  margin-top: 26px;
+  margin-right: 5px;
+  margin-bottom: 0;
 }
 
 .entry-title, .page-title, .comments-title, .comment-reply-title {

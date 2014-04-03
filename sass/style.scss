@@ -223,6 +223,15 @@ body {
       @extend .media-body;
       font-weight: bold;
       text-transform: uppercase;
+      margin: {
+        top: 0;
+        bottom: 0;
+      }
+      @media screen and (min-width: $screen-sm-min) {
+        margin: {
+          top: 24px;
+        }
+      }
     }
     .updated {
       @extend .hidden;
@@ -232,6 +241,11 @@ body {
 
 .entry-actions {
   @extend .pull-right;
+  margin: {
+    top: 26px;
+    right: 5px;
+    bottom: 0;
+  }
   .comments-link a {
     @extend .label, .label-primary;
   }
