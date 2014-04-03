@@ -251,8 +251,17 @@ body {
   }
 }
 footer.entry-meta {
-  @extend .well, .well-sm;
-  .cat-links, .tags-links, .edit-link {display: block; margin-bottom: 10px; &:last-child {margin-bottom: 0;}}
+  margin: {
+    top: 10px;
+    bottom: 30px;
+  }
+  padding: {
+    top: 10px;
+  }
+  border: {
+    top: 1px solid $page-header-border-color;
+  }
+  .cat-links, .tags-links, .edit-link {display: block; margin-bottom: 10px; vertical-align: text-top; &:last-child {margin-bottom: 0;}}
   .edit-link a {@extend .label, .label-warning;}
   .cat-links a {@extend .label, .label-success;}
   .tags-links a {@extend .label, .label-success;}
