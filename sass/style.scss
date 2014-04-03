@@ -214,6 +214,9 @@ body {
 .blog .post { padding-bottom: 20px; border-bottom: 1px solid #ddd; margin-bottom: 20px; &:last-of-type { border-bottom: none; }}
 .entry-header {
   @extend .page-header;
+  margin: {
+    bottom: 5px;
+  }
   .entry-meta {
     @extend .media;
     img.avatar {
@@ -223,6 +226,15 @@ body {
       @extend .media-body;
       font-weight: bold;
       text-transform: uppercase;
+      margin: {
+        top: 0;
+        bottom: 0;
+      }
+      @media screen and (min-width: $screen-sm-min) {
+        margin: {
+          top: 24px;
+        }
+      }
     }
     .updated {
       @extend .hidden;
@@ -232,6 +244,11 @@ body {
 
 .entry-actions {
   @extend .pull-right;
+  margin: {
+    top: 26px;
+    right: 5px;
+    bottom: 0;
+  }
   .comments-link a {
     @extend .label, .label-primary;
   }
@@ -239,10 +256,29 @@ body {
 .entry-title, .page-title, .comments-title, .comment-reply-title {
   font-family: 'Brawler', Georgia, "Times New Roman", serif;
   font-weight: 400;
+  .subtitle {
+    @extend .small;
+    display: block;
+    color: desaturate($link-color, 20%);
+    font: {
+      size: 65%;
+      style: italic;
+      weight: 400;
+    }
+  }
 }
 footer.entry-meta {
-  @extend .well, .well-sm;
-  .cat-links, .tags-links, .edit-link {display: block; margin-bottom: 10px; &:last-child {margin-bottom: 0;}}
+  margin: {
+    top: 10px;
+    bottom: 30px;
+  }
+  padding: {
+    top: 10px;
+  }
+  border: {
+    top: 1px solid $page-header-border-color;
+  }
+  .cat-links, .tags-links, .edit-link {display: block; margin-bottom: 10px; vertical-align: text-top; &:last-child {margin-bottom: 0;}}
   .edit-link a {@extend .label, .label-warning;}
   .cat-links a {@extend .label, .label-success;}
   .tags-links a {@extend .label, .label-success;}
@@ -294,21 +330,21 @@ footer.entry-meta {
 
 
 // Default classes
+.aligncenter {
+  @extend .center-block;
+}
+.alignright {
+  @extend .pull-right;
+  margin-left: ($line-height-computed / 2);
+}
+.alignleft {
+  @extend .pull-left;
+  margin-right: ($line-height-computed / 2);
+}
 .entry-content {
   .alignnone, .aligncenter, .alignright, .alignleft {
     margin-top: ($line-height-computed / 2);
     margin-bottom: ($line-height-computed / 2);
-  }
-  .aligncenter {
-    @extend .center-block;
-  }
-  .alignright {
-    @extend .pull-right;
-    margin-left: ($line-height-computed / 2);
-  }
-  .alignleft {
-    @extend .pull-left;
-    margin-right: ($line-height-computed / 2);
   }
   .wp-caption {
     @extend .thumbnail;
