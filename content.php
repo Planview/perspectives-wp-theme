@@ -43,16 +43,9 @@
     $categories_list = get_the_category_list( __( ' ', 'portfolio-perspectives' ) );
     $tags_list = get_the_tag_list( '', __( ' ', 'portfolio-perspectives' ) );
 
-    if (($categories_list && portfolio_perspectives_categorized_blog()) || $tags_list || (is_user_logged_in() && current_user_can('edit_posts'))) :
+    if ($tags_list || (is_user_logged_in() && current_user_can('edit_posts'))) :
     ?>
 	<footer class="entry-meta">
-			<?php
-				if ( $categories_list && portfolio_perspectives_categorized_blog() ) :
-			?>
-			<span class="cat-links">
-				<?php printf( __( 'Posted in %1$s', 'portfolio-perspectives' ), $categories_list ); ?>
-			</span>
-			<?php endif; // End if categories ?>
 
 			<?php
 				if ( $tags_list ) :
